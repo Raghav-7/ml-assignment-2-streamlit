@@ -34,14 +34,15 @@ This dataset satisfies the assignment constraints:
 
 ### Comparison Table
 
-| ML Model Name         | Accuracy | AUC   | Precision | Recall | F1    | MCC   |
-|-----------------------|----------|-------|-----------|--------|-------|-------|
-| Logistic Regression   | (auto)   | (auto)| (auto)    | (auto) | (auto)| (auto)|
-| Decision Tree         | (auto)   | (auto)| (auto)    | (auto) | (auto)| (auto)|
-| KNN                   | (auto)   | (auto)| (auto)    | (auto) | (auto)| (auto)|
-| Naive Bayes           | (auto)   | (auto)| (auto)    | (auto) | (auto)| (auto)|
-| Random Forest         | (auto)   | (auto)| (auto)    | (auto) | (auto)| (auto)|
-| XGBoost               | (auto)   | (auto)| (auto)    | (auto) | (auto)| (auto)|
+| ML Model Name         | Accuracy | AUC     | Precision | Recall  | F1     | MCC    |
+|-----------------------|----------|---------|-----------|---------|--------|--------|
+| Logistic Regression   | 0.916606 | 0.942437| 0.711775  | 0.436422| 0.541082| 0.516172 |
+| Decision Tree         | 0.894635 | 0.732715| 0.532895  | 0.523707| 0.528261| 0.468983 |
+| KNN                   | 0.908230 | 0.899342| 0.641914  | 0.419181| 0.507171| 0.471715 |
+| Naive Bayes           | 0.820345 | 0.839329| 0.349509  | 0.690733| 0.464156| 0.400918 |
+| Random Forest         | 0.919641 | 0.947576| 0.713826  | 0.478448| 0.572903| 0.543405 |
+| XGBoost               | 0.923282 | 0.955604| 0.692208  | 0.574353| 0.627797| 0.588613 |
+
 
 > Note: The actual values are generated automatically after running `train_and_save_models.py`
 and saved into `model/model_metrics.csv`.
@@ -52,12 +53,12 @@ and saved into `model/model_metrics.csv`.
 
 | ML Model Name         | Observation about model performance |
 |-----------------------|-------------------------------------|
-| Logistic Regression   | Works as a strong baseline and performs well after one-hot encoding. |
-| Decision Tree         | Can overfit and may produce unstable results depending on split depth. |
-| KNN                   | Produces reasonable results but is slower on large datasets. |
-| Naive Bayes           | Very fast, but performance may be limited due to independence assumption. |
-| Random Forest         | Consistently strong and stable due to ensemble averaging. |
-| XGBoost               | Typically achieves the best results due to boosting and non-linear learning. |
+| Logistic Regression   | Strong baseline with high accuracy and AUC, but recall is lower due to class imbalance. |
+| Decision Tree         | Lower AUC compared to other models; tends to overfit and gives less stable generalization. |
+| KNN                   | Performs reasonably well but slightly weaker recall and slower for large datasets. |
+| Naive Bayes           | Gives the highest recall among models but low precision, meaning more false positives. |
+| Random Forest         | Very strong overall performance with good balance between precision and recall. |
+| XGBoost               | Best performing model overall with the highest AUC, F1 score and MCC. |
 
 ---
 
@@ -66,3 +67,4 @@ and saved into `model/model_metrics.csv`.
 ### Step 1: Install dependencies
 ```bash
 pip install -r requirements.txt
+
