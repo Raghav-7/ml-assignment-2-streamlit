@@ -1,0 +1,3 @@
+This folder contains model-related code.
+Models are trained dynamically inside Streamlit using the Train Models button.
+This approach is used to avoid GitHub large file size limits for .pkl files.
