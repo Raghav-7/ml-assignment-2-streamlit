@@ -65,11 +65,8 @@ and saved into `model/model_metrics.csv`.
 
 ---
 
-## How to Run (Local / BITS Virtual Lab)
 
-### Step 1: Install dependencies
-```bash
-pip install -r requirements.txt
+
 
 
 
