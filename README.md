@@ -19,6 +19,7 @@ This dataset satisfies the assignment constraints:
 - Minimum 500 instances
 
 ---
+(Dataset is downloaded from UCI inside Streamlit during training)
 
 ## c) Models Used + Evaluation Metrics
 
@@ -67,4 +68,5 @@ and saved into `model/model_metrics.csv`.
 ### Step 1: Install dependencies
 ```bash
 pip install -r requirements.txt
+
 
