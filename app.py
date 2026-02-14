@@ -99,13 +99,13 @@ def train_all_models(df):
     models = {
         "Logistic Regression": LogisticRegression(max_iter=2000),
         "Decision Tree": DecisionTreeClassifier(random_state=42),
-        "KNN": KNeighborsClassifier(n_neighbors=7),
+        "KNN": KNeighborsClassifier(n_neighbors=9),
         "Naive Bayes": GaussianNB(),
         "Random Forest": RandomForestClassifier(
-            n_estimators=200, random_state=42, n_jobs=-1
+            n_estimators=150, random_state=42, n_jobs=-1
         ),
         "XGBoost": XGBClassifier(
-            n_estimators=300,
+            n_estimators=250,
             learning_rate=0.05,
             max_depth=5,
             subsample=0.9,
@@ -186,6 +186,9 @@ def load_bank_data_from_zip():
 # -----------------------------
 st.title("📌 ML Assignment 2 - Classification Models + Streamlit Deployment")
 
+st.caption("Submitted by: Raghavendra V | BITS ID: 2025AA05984")
+st.caption("M.Tech AIML/DSE | Machine Learning - Assignment 2")
+
 st.markdown(
     """
 This Streamlit app implements **6 classification models** on the **UCI Bank Marketing dataset**.
@@ -240,6 +243,13 @@ if train_btn:
         st.session_state.y_test = y_test
 
     st.success("Training completed successfully!")
+    
+    # Show class distribution (unique UI feature)
+    st.subheader("📊 Dataset Class Distribution (y)")
+    y_counts = df["y"].value_counts()
+    st.bar_chart(y_counts)
+    st.info("The dataset is imbalanced (more 'no' than 'yes'), so precision/recall trade-offs are expected.")
+
 
 st.divider()
 
@@ -288,6 +298,14 @@ if st.session_state.trained_models is not None:
             st.subheader("✅ Prediction Output")
             st.dataframe(out.head(20), use_container_width=True)
 
+            csv_data = out.to_csv(index=False).encode("utf-8")
+            st.download_button(
+                label="⬇️ Download Predictions as CSV",
+                data=csv_data,
+                file_name="predictions.csv",
+                mime="text/csv"
+            )
+
         except Exception as e:
             st.error(f"Prediction failed: {e}")
 
@@ -328,3 +346,4 @@ if st.session_state.trained_models is not None:
 
 else:
     st.warning("Models not trained yet. Click **Train Models** to begin.")
+
